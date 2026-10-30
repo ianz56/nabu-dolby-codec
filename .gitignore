@@ -1,0 +1,39 @@
+# Compiled binary libraries
+*.so
+
+# Compressed packages and archives
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+
+# Firmware images and partitions
+*.img
+*.bin
+*.apk
+
+# Local blobs and extracted firmware directories
+blobs/
+staging_blobs/
+extracted_vendor/
+build_output/
+vintf_audit/
+scratch/
+dist/
+target/
+
+# Local configuration, logs, and caches
+*.log
+.env*
+*.swp
+*~
+.DS_Store
+.idea/
+.vscode/
+
+# Local build artifacts
+__pycache__/
+*.o
+*.a

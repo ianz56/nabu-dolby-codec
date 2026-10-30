@@ -1,0 +1,6 @@
+id=nabu-dolby-codec
+name=Dolby Media Codec for Xiaomi Pad 5
+version=0.2.3
+versionCode=5
+author=Ian
+description=Vendor-provided software Dolby AC3, E-AC3 and E-AC3 JOC decoder for DerpFest 17 on Xiaomi Pad 5 (nabu). Metamodule r1 layout with vendor SELinux contexts, HIDL OMX VINTF fragment, and vendor OMX properties.

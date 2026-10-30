@@ -1,0 +1,36 @@
+# ==============================================================================
+# Dolby Media Codec for Xiaomi Pad 5 (nabu) - Build Environment Specification
+# ==============================================================================
+
+Target Device:
+  Device: Xiaomi Pad 5
+  Codename: nabu / nabu_global
+  SoC: Qualcomm Snapdragon 860 (SM8150-AC)
+  Primary CPU Architecture: ARM64-v8a (AArch64)
+  Secondary Multilib ABI: ARMv7-A (armeabi-v7a)
+
+Target Operating System:
+  ROM: DerpFest 17 Official Stable (v17-20261023)
+  Android Version: 17
+  API Level: 37
+  Kernel Version: Linux 4.14.357-pref-g0eef9272338c
+  SELinux Enforcing: Yes (Strict MLS policy)
+
+Root & Metamodule Stack:
+  Root Provider: KernelSU-Next v3.3.0 (kernel-level hooks)
+  VFS Metamodule: Magic Mount r1 (magic_mount_rs v4.0.12-941-arm64-nabu-patched-final-candidate-r1)
+  Overlay Mechanism: User-space tmpfs/bind mount projection with SELinux context synchronization
+
+Toolchain for libstagefright_softomx_shim.c:
+  Compiler: Clang / LLVM (tested on LLVM 21.0.0 / NDK r26c clang-r487747e)
+  Cross Target: --target=armv7a-linux-androideabi
+  Flags: -mthumb -mfloat-abi=softfp -mfpu=neon -O2 -fPIC -shared -fvisibility=hidden
+  Linker Options: -Wl,-soname,libstagefright_softomx_shim.so -Wl,-z,now -Wl,-z,relro -Wl,--no-undefined -fuse-ld=lld -nostdlib
+  Freestanding Mode: Yes (-ffreestanding, zero libc/libc++ runtime dependencies)
+
+Module Archive Specifications:
+  Format: Standard Magisk / KernelSU module structure
+  Compression: Deflate (zip -r -9)
+  Installer Script: customize.sh
+  Early Boot Script: post-fs-data.sh
+  Verification Script: post-mount-verify.sh

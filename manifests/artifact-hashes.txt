@@ -1,0 +1,65 @@
+# ==============================================================================
+# Dolby Media Codec for Xiaomi Pad 5 (nabu) - Artifact Hash Ledger
+# Target OS: DerpFest 17 (Android 17 / API 37) | Linux 4.14.357
+# Root Framework: KernelSU-Next v3.3.0 | Metamodule: Magic Mount r1
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Production Release Package
+# ------------------------------------------------------------------------------
+# Canonical Magisk/KernelSU ZIP package containing full systemless payload
+e6dab2e6396e6f5df3252691a91ca83d7d98fbd14f3bb67c69f54adc940658d1  nabu-dolby-codec-v0.2.3-final.zip
+
+# ------------------------------------------------------------------------------
+# 2. Source Code
+# ------------------------------------------------------------------------------
+# Pure C GraphicBufferMapper compatibility shim source
+1a05389f5434f45c3206c1372ac83654635bce729376ea5af73b4cb1bfa23769  source/libstagefright_softomx_shim.c
+
+# ------------------------------------------------------------------------------
+# 3. XML Configurations & Fragments
+# ------------------------------------------------------------------------------
+# VINTF HAL manifest fragment -> /vendor/etc/vintf/manifest/
+02396fa82c06a56e3066792dd87bf3b3bc9cfe6f23ccf8e5923f5acf24800dce  config/android.hardware.media.omx@1.0-service.xml
+
+# Codec definition include file -> /vendor/etc/
+67a60b1caf0bac212544993bd88512cc0daaeeec21b42308e5c7264ed7e86d73  config/media_codecs_dolby_audio.xml
+
+# Master vendor codec configuration -> /vendor/etc/
+da3ae30e46650140e3a06b7df1f7edd7aaec43bf06df92b5ea2bc864a41b2145  config/media_codecs.xml
+
+# Module metadata and vendor property definitions
+e0106177672211a1983588bf7d7b5967fcf255aac8df6b6ad25938add44786ab  config/module.prop
+3e6aa0458a94ad806c434bdd884a741d66dd7eed9db705ca48c3fe96704ca3f6  config/system.prop
+
+# ------------------------------------------------------------------------------
+# 4. Proprietary Vendor Binaries (Required for build-module.sh packaging)
+# Architecture: ELF32 (ARMv7-A 32-bit Thumb-2) | Destination: /vendor/lib/
+# NOTE: NOT distributed in repository. Must be supplied locally in blobs/ directory.
+# ------------------------------------------------------------------------------
+# Compiled C compatibility shim (resolving GraphicBufferMapper symbols)
+5a85761252a6876d3bfce5b7df61061cbcd773716be83313ef660382c62d0555  libstagefright_softomx_shim.so
+
+# Patched SoftOMX engine (with DT_NEEDED pointing to libstagefright_softomx_shim.so)
+9c8e41a84c184ec78d7418ff6d0f9ba63b83e7dcdd0a91db5f234808c17946c9  libstagefright_softomx.so
+
+# Dolby decoder configuration library
+47e0a3d2143296e6d2916e0a9549357944860bbf1bf325c511badea5453de717  libdeccfg.so
+
+# Dolby Stagefright OMX bridge plugin
+b08a5dc324a05fafc6d90a650a3b54f09742d26edad2cf97b809fbee60c9acd9  libstagefrightdolby.so
+
+# Dolby Digital Plus / JOC soft decoder library
+d8b09431c2bc0c4aba7d3a0acfd03547a58633053a5cdbb3ecdaa69f957132bd  libstagefright_soft_ddpdec.so
+
+# Dolby Mobile Sound (DMS) HIDL client 2.0
+95d846e23c981093e5003f8dca86d427f5ea06bd5ae5bab4b64f918070e82780  vendor.dolby.hardware.dms@2.0.so
+
+# ------------------------------------------------------------------------------
+# 5. External Environment & Framework Dependencies (Reference Artifacts)
+# ------------------------------------------------------------------------------
+# Magic Mount r1 Metamodule ZIP
+d2ca293962f012926813d2c1bbd038bc247fb7e1901c82c79fd76d861f329f24  magic_mount_rs-4.0.12-941-arm64-nabu-patched-final-candidate-r1.zip
+
+# Official DerpFest 17 Fastboot/Recovery Archive
+96a32ae5bc0be1cb41724f8d298375e5338002dfbc34c3116fc5a5585ff6dcbe  Auto-Installer_DerpFest-v17-20261023-11-56-nabu-Official-Stable_FASTBOOT_RECOVERY.zip
